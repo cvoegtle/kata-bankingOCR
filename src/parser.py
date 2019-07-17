@@ -64,23 +64,30 @@ class AccountNumber:
 
     def __str__(self):
         as_string = ''
-        illegal_character = False
+        for digit in self.account_number:
+            as_string += convert2string(digit)
+
+        if not self.contains_valid_characters():
+            return as_string + ' ILL'
+
+        elif self.calculate_checksum() != 0:
+            return as_string + ' ERR'
+        else:
+            return as_string
+
+    def __repr__(self):
+        return f'{{account_number={self.account_number!r}, checksum={self.calculate_checksum()}}}'
+
+    def contains_valid_characters(self):
         for digit in self.account_number:
             if digit == None:
-                illegal_character = True
-                as_string += '?'
-            else:
-                as_string += str(digit)
-        if illegal_character:
-            return as_string + ' ILL'
-        else:
-            checksum_ok =  self.calculate_checksum() == 0
-            if checksum_ok:
-                return as_string
-            else:
-                return as_string + ' ERR'
+                return False
+        return True
 
     def calculate_checksum(self):
+        if not self.contains_valid_characters():
+            return None
+
         checksum = 0
         for index in range(len(self.account_number)):
             digit = self.account_number[index]
@@ -88,3 +95,8 @@ class AccountNumber:
             checksum += digit * multiplier
         return checksum % 11
 
+def convert2string(digit):
+    if digit is None:
+        return '?'
+    else:
+        return str(digit)

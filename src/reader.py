@@ -18,7 +18,7 @@ def validate_scanner_result(lines):
         return False
 
     if len(lines) != 3:
-        print('Die Datei hat ' + str(len(lines)) + ' Zeilen, anstatt der erforderlichen 3')
+        print(f'Die Datei hat {len(lines)} Zeilen, anstatt der erforderlichen 3')
         return False
 
     for line in lines:
