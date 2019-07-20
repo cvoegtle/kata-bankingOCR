@@ -3,7 +3,7 @@ import unittest
 import ocr_parser
 import reader
 
-
+# meine Tests für die Banking OCR Kata
 class FileInputTest(unittest.TestCase):
     def test_read_file(self):
         data = reader.read_scanner_result('data/testcase1.txt')
