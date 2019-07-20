@@ -53,6 +53,7 @@ class FileParserTest(unittest.TestCase):
         self.assertEqual(9, len(ocr_characters))
         account_number = ocr_parser.translate(ocr_characters)
         self.assertEqual('222222222 ERR', str(account_number))
+        print(f'account number: {account_number}, {account_number!r}')
 
     def test_parse_123456789(self):
         data = reader.read_scanner_result('data/testcase4.txt')
