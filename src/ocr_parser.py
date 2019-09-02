@@ -14,7 +14,6 @@ def translate(ocr_characters):
     return AccountNumber(translate_chars)
 
 
-
 class OCRCharacter:
     ZERO = [' _ ', '| |', '|_|']
     ONE = ['   ', '  |', '  |']
